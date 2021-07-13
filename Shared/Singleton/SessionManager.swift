@@ -114,7 +114,6 @@ final class SessionManager {
 
     func loginWithSavedSession(user: SignedInUser) {
         let accessToken = getAuthToken(userID: user.user_id!)
-        
 
         self.user = user
         generateAuthHeader(with: accessToken, deviceID: user.device_uuid)

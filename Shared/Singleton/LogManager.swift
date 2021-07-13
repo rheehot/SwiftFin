@@ -13,15 +13,15 @@ import Puppy
 final class LogManager {
     static let shared = LogManager()
     let log = Puppy()
-    
+
     init() {
         let console = ConsoleLogger("me.vigue.jellyfin.ConsoleLogger")
         let fileURL = URL(fileURLWithPath: "./app.log").absoluteURL
         let file = try? FileLogger("me.vigue.jellyfin", fileURL: fileURL)
-        console.format = LogFormatter();
+        console.format = LogFormatter()
         log.add(console, withLevel: .debug)
-        if(file != nil) {
-            file!.format = LogFormatter();
+        if file != nil {
+            file!.format = LogFormatter()
             log.add(file!, withLevel: .debug)
         }
     }
@@ -29,7 +29,7 @@ final class LogManager {
 
 class LogFormatter: LogFormattable {
     func formatMessage(_ level: LogLevel, message: String, tag: String, function: String,
-                       file: String, line: UInt, swiftLogInfo: [String : String],
+                       file: String, line: UInt, swiftLogInfo: [String: String],
                        label: String, date: Date, threadID: UInt64) -> String {
         let date = dateFormatter(date)
         let file = shortFileName(file)
